@@ -37,7 +37,10 @@ namespace Ebuy.Models
         public string UserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        public int ImageId { get; set; }
-        public virtual Image Image { get; set; }
+        public string ImagePath { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
+
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,8 +18,7 @@ namespace Ebuy.Controllers
         // GET: Items
         public ActionResult Index()
         {
-            var items = db.Items.Include(i => i.Image);
-            return View(items.ToList());
+            return View(db.Items.ToList());
         }
 
         // GET: Items/Details/5
@@ -39,7 +39,6 @@ namespace Ebuy.Controllers
         // GET: Items/Create
         public ActionResult Create()
         {
-            ViewBag.ImageId = new SelectList(db.Images, "ImageId", "FileName");
             return View();
         }
 
@@ -48,17 +47,55 @@ namespace Ebuy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemId,ItemName,Category,Price,Description,Location,Quantity,UserId,ImageId")] Item item)
+        public ActionResult Create(Item item)
         {
-            if (ModelState.IsValid)
-            {
-                db.Items.Add(item);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.ImageId = new SelectList(db.Images, "ImageId", "FileName", item.ImageId);
-            return View(item);
+            //Credit for file upload;
+            //https://www.c-sharpcorner.com/article/asp-net-mvc-form-with-file-upload/
+
+            //Use Namespace called :  System.IO  
+            string FileName = Path.GetFileNameWithoutExtension(item.ImageFile.FileName);
+
+            //To Get File Extension  
+            string FileExtension = Path.GetExtension(item.ImageFile.FileName);
+
+            //Add Current Date To Attached File Name  
+            FileName = DateTime.Now.ToString("yyyyMMdd") + "-" + FileName.Trim() + FileExtension;
+
+
+            string path = System.IO.Path.Combine(
+                                   Server.MapPath("~/Images/"), FileName);
+
+            string pathForDb = "../../Images/" + FileName;
+
+
+            //To copy and save file into server.  
+            item.ImageFile.SaveAs(path);
+
+            //To save Club Member Contact Form Detail to database table.  
+            var db = new ApplicationDbContext();
+
+            Item newItem = new Item();
+
+            newItem.ImagePath = pathForDb;
+            newItem.ItemName = item.ItemName;
+            newItem.Category = item.Category;
+            newItem.Price = item.Price;
+            newItem.Location = item.Location;
+            newItem.Quantity = item.Quantity;
+            newItem.UserId = item.UserId;
+            newItem.Description = item.Description;
+
+
+
+            db.Items.Add(newItem);
+            db.SaveChanges();
+
+            return View();
+
+            
+
+            
         }
 
         // GET: Items/Edit/5
@@ -73,7 +110,6 @@ namespace Ebuy.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ImageId = new SelectList(db.Images, "ImageId", "FileName", item.ImageId);
             return View(item);
         }
 
@@ -82,7 +118,7 @@ namespace Ebuy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ItemId,ItemName,Category,Price,Description,Location,Quantity,UserId,ImageId")] Item item)
+        public ActionResult Edit([Bind(Include = "ItemId,ItemName,Category,Price,Description,Location,Quantity,UserId,ImagePath")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +126,6 @@ namespace Ebuy.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ImageId = new SelectList(db.Images, "ImageId", "FileName", item.ImageId);
             return View(item);
         }
 
