@@ -177,5 +177,13 @@ namespace Ebuy.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        public FileResult getFile()
+        {
+
+            return File("~/App_Data/currencytext.txt", System.Net.Mime.MediaTypeNames.Text.Plain);
+
+        }
     }
 }
