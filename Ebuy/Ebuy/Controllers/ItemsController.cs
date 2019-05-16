@@ -90,6 +90,7 @@ namespace Ebuy.Controllers
             //To save Club Member Contact Form Detail to database table.  
             var db = new ApplicationDbContext();
 
+            //lazy object creation
             Item newItem = new Item();
 
             newItem.ImagePath = pathForDb;
@@ -101,16 +102,14 @@ namespace Ebuy.Controllers
             newItem.UserId = item.UserId;
             newItem.Description = item.Description;
 
-
-
+            //save to db
             db.Items.Add(newItem);
             db.SaveChanges();
 
-            return View();
+            //Redirect to index function, with the userId for created item as parameter
+            //this results in 'my products' - page.
+            return RedirectToAction("Index", new { title = item.UserId});
 
-            
-
-            
         }
 
         // GET: Items/Edit/5
