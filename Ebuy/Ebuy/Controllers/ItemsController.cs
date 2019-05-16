@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -15,10 +16,24 @@ namespace Ebuy.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Items
-        public ActionResult Index()
+        /* GET: Items
+         * Index, search-based in accordance to lab 2
+         * If a string is input (logged in userID),
+         * return a list based on only their ads.
+         */
+        public ActionResult Index(string title)
         {
-            return View(db.Items.ToList());
+            
+            if (!String.IsNullOrEmpty(title))
+            {
+                var usersItems = db.Items.Where(s => s.UserId.Equals(title));
+                return View(usersItems.ToList());
+            }
+            else
+            {
+                return View(db.Items.ToList());
+            }
+            
         }
 
         // GET: Items/Details/5
