@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Ebuy.Models
         public int ItemId { get; set; }
 
         [Required]
+        [DisplayName("Product name")]
         [RegularExpression("[a-zA-Zåäö/0-9 ]{1,255}", ErrorMessage = "Only characters and numbers allowed.")]
         public string ItemName { get; set; }
 
@@ -34,6 +36,7 @@ namespace Ebuy.Models
         public int Quantity { get; set; }
 
 
+        [DisplayName("Owner")]
         public string UserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
