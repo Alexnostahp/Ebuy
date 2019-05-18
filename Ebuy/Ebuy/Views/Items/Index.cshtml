@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Ebuy.Models.Item>
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "All items";
@@ -51,6 +52,11 @@
             </td>
             <td>
                 @Html.ActionLink("Details", "Details", new { id = item.ItemId })
+            </td>
+            <td>
+                @Html.ActionLink("Buy now", "Create",
+                                        "BoughtItems", new { buyer = User.Identity.GetUserId(), boughtItemId = item.ItemId },
+                                        htmlAttributes: null)
             </td>
         </tr>
     }

@@ -11,7 +11,7 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Products", "Index", "Items")</li>
@@ -19,12 +19,31 @@
                     @if (Request.IsAuthenticated)
                     {
                         @Html.AntiForgeryToken()
-                    <li>@Html.ActionLink("My products",
+                        <li>
+                            @*Link to my products, using Identity as a reference*@
+                            @Html.ActionLink("My products",
                        "Index",
                        "Items",
                        new { title = User.Identity.GetUserId() },
                        htmlAttributes: null )
-                    </li>
+                        </li>
+
+                        <li>
+                            @*Link to BoughtItems->Index with Identity and "sold" as parameter*@
+                            @Html.ActionLink("Selling history",
+                         "Index",
+                         "BoughtItems",
+                         new { title = User.Identity.GetUserId(), value = "sold" },
+                  htmlAttributes: null )
+                        </li>
+                        @*Link to BoughtItems->Index with Identity and "purchase" as parameter*@
+                        <li>
+                            @Html.ActionLink("Purchase history",
+                                        "Index",
+                                        "BoughtItems",
+                                        new { title = User.Identity.GetUserId(), value = "purchase" },
+                                        htmlAttributes: null )
+                        </li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
