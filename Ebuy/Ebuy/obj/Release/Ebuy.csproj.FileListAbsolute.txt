@@ -102,7 +102,6 @@ C:\visualstudioprojects\Ebuy\Ebuy\Ebuy\bin\Microsoft.Owin.Security.OAuth.xml
 C:\visualstudioprojects\Ebuy\Ebuy\Ebuy\bin\System.Diagnostics.DiagnosticSource.xml
 C:\visualstudioprojects\Ebuy\Ebuy\Ebuy\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 C:\visualstudioprojects\Ebuy\Ebuy\Ebuy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\visualstudioprojects\Ebuy\Ebuy\Ebuy\obj\Release\Ebuy.csprojAssemblyReference.cache
 C:\visualstudioprojects\Ebuy\Ebuy\Ebuy\obj\Release\Ebuy.Migrations.initial3.resources
 C:\visualstudioprojects\Ebuy\Ebuy\Ebuy\obj\Release\Ebuy.csproj.GenerateResource.cache
 C:\visualstudioprojects\Ebuy\Ebuy\Ebuy\obj\Release\Ebuy.csproj.CoreCompileInputs.cache
