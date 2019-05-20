@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Ebuy.Models.BoughtItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Bought items</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Item.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    
+                    @Html.ActionLink("Details", "Details", new { id = item.BoughtItemId })
+                    
+                </td>
+            </tr>
+        }
+    }
+
+
+
+</table>
