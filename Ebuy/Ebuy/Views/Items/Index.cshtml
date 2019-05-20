@@ -54,7 +54,7 @@
                 <img src="@item.ImagePath" class="itemImage">
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.ItemId })
+                @Html.ActionLink("Add to cart", "Index", "Carts", new { buyerID = User.Identity.GetUserId(), itemID = item.ItemId }, htmlAttributes: null)
             </td>
             <td>
                 @Html.ActionLink("Buy now", "Create",

@@ -175,6 +175,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BoughtItemsController.cs" />
+    <Compile Include="Controllers\CartsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -193,8 +194,21 @@
     <Compile Include="Migrations\201905181403517_Removed user from boughtItem..Designer.cs">
       <DependentUpon>201905181403517_Removed user from boughtItem..cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905200853008_added cart.cs" />
+    <Compile Include="Migrations\201905200853008_added cart.Designer.cs">
+      <DependentUpon>201905200853008_added cart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905200920445_useId in cart is now string.cs" />
+    <Compile Include="Migrations\201905200920445_useId in cart is now string.Designer.cs">
+      <DependentUpon>201905200920445_useId in cart is now string.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905200936244_CartSingeItem.cs" />
+    <Compile Include="Migrations\201905200936244_CartSingeItem.Designer.cs">
+      <DependentUpon>201905200936244_CartSingeItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -264,6 +278,8 @@
     <Content Include="Views\BoughtItems\Details.cshtml" />
     <Content Include="Views\BoughtItems\Edit.cshtml" />
     <Content Include="Views\BoughtItems\Index.cshtml" />
+    <Content Include="Views\Carts\Delete.cshtml" />
+    <Content Include="Views\Carts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
@@ -287,6 +303,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905181403517_Removed user from boughtItem..resx">
       <DependentUpon>201905181403517_Removed user from boughtItem..cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905200853008_added cart.resx">
+      <DependentUpon>201905200853008_added cart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905200920445_useId in cart is now string.resx">
+      <DependentUpon>201905200920445_useId in cart is now string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905200936244_CartSingeItem.resx">
+      <DependentUpon>201905200936244_CartSingeItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

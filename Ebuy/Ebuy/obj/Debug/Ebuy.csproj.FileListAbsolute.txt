@@ -218,7 +218,6 @@ C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.dll
 C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.pdb
 C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.initial3.resources
 C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.csproj.GenerateResource.cache
-C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.csprojAssemblyReference.cache
 C:\visualstudioprojects\Ebuy\Ebuy\Ebuy\bin\Ebuy.dll.config
 C:\visualstudioprojects\Ebuy\Ebuy\Ebuy\bin\Ebuy.dll
 C:\visualstudioprojects\Ebuy\Ebuy\Ebuy\bin\Ebuy.pdb
@@ -443,3 +442,9 @@ C:\code\Ebuy\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.pdb
 C:\code\Ebuy\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.boughtitemsadded.resources
 C:\code\Ebuy\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.csprojAssemblyReference.cache
 C:\code\Ebuy\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.RemoveduserfromboughtItem.resources
+C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.boughtitemsadded.resources
+C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.RemoveduserfromboughtItem.resources
+C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.addedcart.resources
+C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.useIdincartisnowstring.resources
+C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.csprojAssemblyReference.cache
+C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.CartSingeItem.resources
