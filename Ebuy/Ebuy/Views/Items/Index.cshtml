@@ -7,6 +7,13 @@
 
 <h2 class="itemHeader">All items</h2>
 
+    @if (ViewBag.errorMessage != null || ViewBag.errorMessage != "")
+    {
+        <p>@TempData["errorMessage"]</p>
+        }
+    
+
+
 <select id="selectCurrency" class="select">
     <option value="sek">SEK</option>
     <option value="usd">USD</option>
@@ -53,11 +60,11 @@
                 <img src="@item.ImagePath" class="itemImage">
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.ItemId })
+                @Html.ActionLink("Add to cart", "Index", "Carts", new { buyerID = User.Identity.GetUserId(), itemID = item.ItemId }, htmlAttributes: null)
             </td>
             <td>
                 @Html.ActionLink("Buy now", "Create",
-                                        "BoughtItems", new { buyer = User.Identity.GetUserId(), boughtItemId = item.ItemId },
+                                        "BoughtItems", new { buyer = User.Identity.GetUserId(), boughtItemId = item.ItemId, buyQuantity = 1},
                                         htmlAttributes: null)
             </td>
         </tr>
@@ -66,3 +73,5 @@
 </table>
 
 <script type="text/javascript" src="~/Scripts/ajaxcurrency.js"></script>
+<script type="text/javascript" src="~/Scripts/ajaxquantity.js"></script>
+
