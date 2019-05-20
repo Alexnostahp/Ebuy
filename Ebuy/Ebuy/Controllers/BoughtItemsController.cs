@@ -69,18 +69,35 @@ namespace Ebuy.Controllers
          */
          //TODO: Fix so that item.quantity is negated.
         [Authorize]
-        public ActionResult Create(int boughtItemId, string buyer)
+        public ActionResult Create(int boughtItemId, string buyer, int buyQuantity)
         {
-            
-            BoughtItem bi = new BoughtItem();
-            bi.ItemId = boughtItemId;
-            bi.UserId = buyer;
 
-            db.BoughtItems.Add(bi);
-            db.SaveChanges();
+            Item item = db.Items.Find(boughtItemId); 
+            var quantity = item.Quantity;
 
-            ViewBag.ItemId = new SelectList(db.Items, "ItemId", "ItemName");
-            return RedirectToAction("Index", new { title= buyer,  value = "purchase"});
+            if (buyQuantity <= quantity && quantity != 0)
+            {
+
+                item.Quantity -= buyQuantity;
+
+                BoughtItem bi = new BoughtItem();
+                bi.ItemId = boughtItemId;
+                bi.UserId = buyer;
+
+                db.BoughtItems.Add(bi);
+                db.SaveChanges();
+
+                ViewBag.ItemId = new SelectList(db.Items, "ItemId", "ItemName");
+                return RedirectToAction("Index", new { title = buyer, value = "purchase" });
+            }
+            else
+            {
+                //If not enough quantity. pop up message
+                TempData["errorMessage"] = "You asked for a larger quantity than the supplier supports.";
+
+                //ViewBag.errorMessage = "You asked for a larger quantity than the supplier supports.";
+                return RedirectToAction("Index", "Items");
+            }
         }
 
         // POST: BoughtItems/Create
