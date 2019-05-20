@@ -22,13 +22,13 @@
                 {
                 @Html.AntiForgeryToken()
                 <li>
-                    <i class="fas fa-ad"></i>  @Html.ActionLink("My products",
+                    <i class="fas fa-box-open"></i>  @Html.ActionLink("My products",
                     "Index",
                     "Items",
                     new { title = User.Identity.GetUserId() },
                     htmlAttributes: null)
                 </li>
-                <li>
+                <li><i class="fas fa-history"></i>
                     @*Link to BoughtItems->Index with Identity and "sold" as parameter*@
                     @Html.ActionLink("Selling history",
                     "Index",
@@ -37,7 +37,7 @@
                     htmlAttributes: null )
                 </li>
                 @*Link to BoughtItems->Index with Identity and "purchase" as parameter*@
-                <li>
+                <li><i class="fas fa-history"></i>
                     @Html.ActionLink("Purchase history",
                     "Index",
                     "BoughtItems",
@@ -61,7 +61,11 @@
     </div>
 
     <footer id="footer">
-        <p>&copy; @DateTime.Now.Year - Made with <i class="fas fa-heart"></i> Welcome to Ebuy</p>
+
+        <div id="footer-content">
+            <p>&copy; @DateTime.Now.Year - Made with <i class="fas fa-heart"></i>, Welcome to Ebuy</p>
+        </div>
+        
     </footer>
 </body>
 </html>

@@ -28,13 +28,25 @@ body {
 
 
 #footer {
+    height: 24px;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    bottom: 0pt;
+    left: 0pt;
+
     text-align: center;
     background-color: black;
     color: white;
-    position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 100vw;
     height: 2.5rem;
+}
+
+#footer-content {
+    height: 24px;
+    width: 100vw;
 }
 
 

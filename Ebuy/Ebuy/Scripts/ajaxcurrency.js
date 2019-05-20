@@ -5,6 +5,8 @@ let selectCurrency = document.querySelector("#selectCurrency");
 let convertButton = document.querySelector("#convertButton");
 
 let priceTexts = document.querySelectorAll("#priceValue");
+let lastSelection = "sek";
+
 
 
 //Make an ajax call to local file for convertion numbers
@@ -19,38 +21,37 @@ convertButton.addEventListener("click", function () {
 
 
             //The three diffrent values
-            var usd = JSONobj.usd;
-
-            var eur = JSONobj.eur;
-
-            var sek = JSONobj.sek;
+            var sekusd = JSONobj.sekusd;
+            var usdsek = JSONobj.usdsek;
+           
 
             //make the users selection the current one
             let selection = selectCurrency.value;
 
-            var current = "";
+            
 
-            if (selection == "usd") {
-                current = usd;
+            if (selection == "usd" && lastSelection != "usd") {
+                lastSelection = "usd";
+                setPrice(sekusd);
             }
-            else if (selection == "eur") {
-                current = eur;
-            }
-            else if (selection == "sek") {
-                current = sek;
+            else if (selection == "sek" && lastSelection != "sek") {
+                lastSelection = "sek";
+                setPrice(usdsek);
             }
 
 
-            //Set the price of the items * values
-            priceTexts.forEach(price => {
-                let currentPriceAsString = price.innerHTML;
+            function setPrice(convertionrate) {
+                //Set the price of the items * values
+                priceTexts.forEach(price => {
+                    let currentPriceAsString = price.innerHTML;
 
-                let convertedPrice = currentPriceAsString * current;
+                    let convertedPrice = currentPriceAsString * convertionrate;
 
-                price.innerHTML = convertedPrice;
-            });
+                    convertedPrice = convertedPrice.toFixed(1);
 
-
+                    price.innerHTML = convertedPrice;
+                });
+            }
         }
     });
 
