@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -20,7 +21,7 @@ namespace Ebuy.Controllers
         {
 
             //to avoid bug with 'go to cart' instead of 'add to cart'.
-            if ( itemID != null)
+            if (itemID != null)
             {
                 Cart newCart = new Cart();
 
@@ -32,7 +33,7 @@ namespace Ebuy.Controllers
                 db.Carts.Add(newCart);
                 db.SaveChanges();
             }
-           
+
 
 
             //Get the current cart(s) of this user
@@ -57,6 +58,37 @@ namespace Ebuy.Controllers
             return View(cart);
         }
 
+        public ActionResult BuyAll(string userID)
+        {
+
+            var cart = db.Carts.Where(s => s.UserId.Equals(userID)).ToList();
+            Item item = null;
+            BoughtItem bi = null;
+
+            foreach (Cart temp in cart)
+            {
+
+                item = temp.Item;
+                bi = new BoughtItem();
+                bi.ItemId = temp.ItemId;
+                bi.UserId = userID;
+                item.Quantity -= 1;
+
+                db.BoughtItems.Add(bi);
+                db.Carts.Remove(temp);
+                item = null;
+                bi = null;
+
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
         public ActionResult DeleteAll(string userID)
         {
 
@@ -64,7 +96,7 @@ namespace Ebuy.Controllers
             foreach (Cart temp in cart)
             {
                 db.Carts.Remove(temp);
-                
+
             }
             db.SaveChanges();
 
