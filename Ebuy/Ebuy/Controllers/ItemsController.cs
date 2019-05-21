@@ -36,6 +36,21 @@ namespace Ebuy.Controllers
             
         }
 
+        public ActionResult MyProducts(string title)
+        {
+
+            if (!String.IsNullOrEmpty(title))
+            {
+                var usersItems = db.Items.Where(s => s.UserId.Equals(title));
+                return View(usersItems.ToList());
+            }
+            else
+            {
+                return View(db.Items.ToList());
+            }
+
+        }
+
         // GET: Items/Details/5
         public ActionResult Details(int? id)
         {
@@ -50,6 +65,7 @@ namespace Ebuy.Controllers
             }
             return View(item);
         }
+
 
         // GET: Items/Create
         public ActionResult Create()

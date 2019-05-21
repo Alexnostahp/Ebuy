@@ -7,12 +7,14 @@
 
 <h2 class="itemHeader">All items</h2>
 
-    @if (ViewBag.errorMessage != null || ViewBag.errorMessage != "")
-    {
-        <p>@TempData["errorMessage"]</p>
-        }
-    
+@if (ViewBag.errorMessage != null || ViewBag.errorMessage != "")
+{
+    <p>@TempData["errorMessage"]</p>
+}
 
+    <p class="link">
+        @Html.ActionLink("Create", "Create", "Items")
+    </p>
 
 <select id="selectCurrency" class="select">
     <option value="sek">SEK</option>
@@ -36,16 +38,15 @@
             @Html.DisplayNameFor(model => model.Quantity)
         </th>
         <th>Image</th>
+        <th>@Html.DisplayNameFor(model => model.Description)</th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td class="linkInProducts">
-                <a href="@Url.Action("details", "items", new { id = item.ItemId })">
-                    <span>@Html.DisplayFor(modelItem => item.ItemName)</span>
-                </a>
-
+            <td class="linkInProducts">   
+                @Html.DisplayFor(modelItem => item.ItemName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category)
@@ -60,12 +61,15 @@
                 <img src="@item.ImagePath" class="itemImage">
             </td>
             <td>
-                @Html.ActionLink("Add to cart", "Index", "Carts", new { buyerID = User.Identity.GetUserId(), itemID = item.ItemId }, htmlAttributes: null)
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
+            <td class="link">
                 @Html.ActionLink("Buy now", "Create",
                                         "BoughtItems", new { buyer = User.Identity.GetUserId(), boughtItemId = item.ItemId, buyQuantity = 1},
                                         htmlAttributes: null)
+                <br />
+                <br />
+                @Html.ActionLink("Add to cart", "Index", "Carts", new { buyerID = User.Identity.GetUserId(), itemID = item.ItemId }, htmlAttributes: null)
             </td>
         </tr>
     }

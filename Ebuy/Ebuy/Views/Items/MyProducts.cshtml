@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Ebuy.Models.Item>
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "All items";
+}
+
+<h2 class="itemHeader">My Items</h2>
+
+@if (ViewBag.errorMessage != null || ViewBag.errorMessage != "")
+{
+    <p>@TempData["errorMessage"]</p>
+}
+
+    <p class="link">
+        @Html.ActionLink("Create", "Create", "Items")
+    </p>
+
+<select id="selectCurrency" class="select">
+    <option value="sek">SEK</option>
+    <option value="usd">USD</option>
+</select>
+
+<button id="convertButton" class="myButton">CONVERT</button>
+
+<table id="itemtable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>Image</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td class="linkInProducts">
+            <a href="@Url.Action("details", "items", new { id = item.ItemId })">
+                <span>@Html.DisplayFor(modelItem => item.ItemName)</span>
+            </a>
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td id="priceValue">
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            <img src="@item.ImagePath" class="itemImage">
+        </td>
+        <td class="link">
+            @Html.ActionLink("Add to cart", "Index", "Carts", new { buyerID = User.Identity.GetUserId(), itemID = item.ItemId }, htmlAttributes: null)
+        </td>
+        <td class="link">
+            @Html.ActionLink("Buy now", "Create",
+                                    "BoughtItems", new { buyer = User.Identity.GetUserId(), boughtItemId = item.ItemId, buyQuantity = 1},
+                                    htmlAttributes: null)
+        </td>
+        <td class="link">
+            @Html.ActionLink("Delete", "Delete", "items", new { id = item.ItemId }, htmlAttributes: null)
+        </td>
+    </tr>
+    }
+
+</table>
+
+<script type="text/javascript" src="~/Scripts/ajaxcurrency.js"></script>
+<script type="text/javascript" src="~/Scripts/ajaxquantity.js"></script>
+

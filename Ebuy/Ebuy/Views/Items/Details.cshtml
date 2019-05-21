@@ -50,14 +50,6 @@
             @Html.DisplayFor(model => model.Quantity)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
-
         <dd>
             <img src="@Model.ImagePath">
         </dd>
@@ -65,6 +57,10 @@
     </dl>
 </div>
 <p class="link">
+    @if (ViewContext.HttpContext.User.IsInRole("Your role"))
+    {
+        
+    }
     @Html.ActionLink("Edit", "Edit", new { id = Model.ItemId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
