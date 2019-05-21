@@ -672,3 +672,8 @@ C:\Users\Piraten\Desktop\Project\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.csproj.CoreCompil
 C:\Users\Piraten\Desktop\Project\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.csproj.CopyComplete
 C:\Users\Piraten\Desktop\Project\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.dll
 C:\Users\Piraten\Desktop\Project\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.pdb
+C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.boughtitemsadded.resources
+C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.RemoveduserfromboughtItem.resources
+C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.addedcart.resources
+C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.useIdincartisnowstring.resources
+C:\Code\Webstuffs\Ebuy\Ebuy\Ebuy\obj\Debug\Ebuy.Migrations.CartSingeItem.resources
