@@ -65,14 +65,6 @@
             <img src="@item.ImagePath" class="itemImage">
         </td>
         <td class="link">
-            @Html.ActionLink("Add to cart", "Index", "Carts", new { buyerID = User.Identity.GetUserId(), itemID = item.ItemId }, htmlAttributes: null)
-        </td>
-        <td class="link">
-            @Html.ActionLink("Buy now", "Create",
-                                    "BoughtItems", new { buyer = User.Identity.GetUserId(), boughtItemId = item.ItemId, buyQuantity = 1},
-                                    htmlAttributes: null)
-        </td>
-        <td class="link">
             @Html.ActionLink("Delete", "Delete", "items", new { id = item.ItemId }, htmlAttributes: null)
         </td>
     </tr>
