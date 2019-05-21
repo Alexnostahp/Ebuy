@@ -4,18 +4,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="itemHeader">Bought items</h2>
+<h2 class="itemHeader">History</h2>
 
 
-<table class="table">
+<table id="itemtable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Item.ItemName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.Item.Price)
         </th>
-        <th></th>
     </tr>
 
     @if (Model != null)
@@ -27,7 +26,7 @@
                     @Html.DisplayFor(modelItem => item.Item.ItemName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserId)
+                    @Html.DisplayFor(modelItem => item.Item.Price)
                 </td>
             </tr>
         }

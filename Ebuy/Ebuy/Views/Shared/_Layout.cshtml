@@ -16,19 +16,23 @@
     <div id="wrapper">
         <div id="navbar">
             <ul id="navlist">
-                <li> <i class="fab fa-product-hunt"></i> @Html.ActionLink("Products", "Index", "Items")</li>
+
+                <li> <i class="fas fa-home"></i></i>@Html.ActionLink("Home", "Index", "Home")</li>
+                <br />
+                <li> <i class="fab fa-product-hunt"></i>@Html.ActionLink("Products", "Index", "Items")</li>
                 @*   *@
                 @if (Request.IsAuthenticated)
                 {
                     @Html.AntiForgeryToken()
                     <li>
-                        <i class="fas fa-box-open"></i>  @Html.ActionLink("My products",
-"Index",
+                        <i class="fas fa-box-open"></i>@Html.ActionLink("My products",
+"MyProducts",
 "Items",
 new { title = User.Identity.GetUserId() },
 htmlAttributes: null)
                     </li>
-                    <li> <i class="fas fa-history"></i>
+                    <li>
+                        <i class="fas fa-history"></i>
                         @*Link to BoughtItems->Index with Identity and "sold" as parameter*@
                         @Html.ActionLink("Selling history",
                         "Index",
@@ -37,7 +41,8 @@ htmlAttributes: null)
                         htmlAttributes: null )
                     </li>
                     @*Link to BoughtItems->Index with Identity and "purchase" as parameter*@
-                    <li> <i class="fas fa-history"></i>
+                    <li>
+                        <i class="fas fa-history"></i>
                         @Html.ActionLink("Purchase history",
                         "Index",
                         "BoughtItems",
@@ -45,7 +50,8 @@ htmlAttributes: null)
                         htmlAttributes: null )
                     </li>
                     <li>
-                        @Html.ActionLink("Go to cart", "Index", "Carts", new { buyerID = User.Identity.GetUserId()}, htmlAttributes: null)
+                        <i class="fas fa-shopping-cart"></i>
+                        @Html.ActionLink("Go to cart", "Index", "Carts", new { buyerID = User.Identity.GetUserId() }, htmlAttributes: null)
                     </li>
                 }
             </ul>
