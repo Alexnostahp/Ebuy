@@ -5,42 +5,48 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="itemHeader">Cart</h2>
 
-<table class="table">
+<table id="itemtable">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Amount)
+            @Html.DisplayNameFor(model => model.Item.ItemName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ItemId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.Item.Price)
         </th>
         <th></th>
     </tr>
+
+    @{ var TotalPrice = 0; }
 
     @foreach (var item in Model)
     {
 
         <tr>
-            
+
             <td>
-                @Html.DisplayFor(modelItem => item.Amount)
+                @Html.DisplayFor(modelItem => item.Item.ItemName)
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.ItemId)
+                @Html.DisplayFor(modelItem => item.Item.Price)
+                @{ TotalPrice = TotalPrice + Int32.Parse(item.Item.Price); }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.ActionLink("Remove from cart", "Delete", new { id = item.CartId })
+                <p class="link">
+                    @Html.ActionLink("Remove from cart", "Delete", new { id = item.CartId })
+                </p>
             </td>
         </tr>
     }
+    <p>Total price = @TotalPrice</p>
 
 </table>
-@Html.ActionLink("Clear cart", "DeleteAll", new { userID = User.Identity.GetUserId() }, htmlAttributes: null)
+<p class="link">
+    @Html.ActionLink("Clear cart", "DeleteAll", new { userID = User.Identity.GetUserId() }, htmlAttributes: null)
+</p>
+
+<p class="link">
+    @Html.ActionLink("Buy all", "BuyAll", new { userID = User.Identity.GetUserId() }, htmlAttributes: null)
+</p>
